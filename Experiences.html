@@ -1,0 +1,118 @@
+<html>
+<body>
+<style>
+
+body {
+background-color: sienna ;
+}
+h1 {
+font-size: 60;
+font-family: verdana;
+text-align: center;
+}
+a {
+  font-size: 20;
+  font-famiily: verdana;
+}
+form {
+  font-size: 20;
+  font-family:fantasy;
+  text-align:center;
+}
+label {
+  text-align:center;
+  font-size:20;
+  font-family: fantasy;
+}
+
+</style>
+
+
+<div data-role="#name" id="form" data-theme="a" data-add-back-btn="true">
+  <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <h1>Tell Us About Your Visit</h1>
+  </div>
+
+  <div data-role="content">
+
+    <form action="Name" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" size="30"><br>
+
+
+      <label for="telephone">Telephone Number:</label>
+      <input type="text" name="telephone" id="telephone" size="20"><br>
+
+
+
+      <label for="email">Email:</label>
+      <input type="text" name="email" id="email" size="50"><br>
+
+
+
+      <label for="rating">How Do You Rate Us?:</label>
+      <input type="text" name="rating" id="rating" size="10"><br>
+
+
+
+      <label for="experience">Tell Us About Your Experience:</label>
+      <input type="text" name="experience" id="experience" size="100"><br>
+    </form>
+    <br>
+
+
+
+
+
+<p>
+  Below are other pages you may go to.
+</p>
+<hr>
+
+<a href="./FirstHomePage.html">Home Page</a><br>
+<a href="./Recipes.html">Recipes</a><br>
+<a href="./Spaghetti.html">Spaghetti My Way</a><br>
+<a href="./Taco.html">Taco Lover</a><br>
+<a href="./Dessert.html">Dessert</a><br>
+<a href="./FavoritePages.html">Favorite Pages</a><br>
+<a href="./OrderFoodHere.html">Order Food Here</a><br>
+
+
+</body>
+</html>
+<script>
+(function() {
+
+	var rasm = document.querySelector('.localstorage');
+
+	function supportsLocalStorage() {
+		return typeof(Storage)!== 'undefined';
+	}
+
+	if (!supportsLocalStorage()) {
+		rasm.value = 'Your browser does not support localStorage.';
+	} else {
+		try {
+			setInterval(function() {
+				localStorage.setItem('autosave', rasm.value);
+			}, 1000);
+		} catch (e) {
+			if (e == QUOTA_EXCEEDED_ERR) {
+				alert('Quota exceeded!');
+			}
+		}
+		if (localStorage.getItem('autosave')) {
+			rasm.value = localStorage.getItem('autosave');
+		}
+		document.querySelector('.clear').onclick = function() {
+			rasm.value = '';
+			localStorage.removeItem('autosave');
+		};
+		document.querySelector('.empty').onclick = function() {
+			rasm.value = '';
+			localStorage.clear();
+		};
+	}
+
+})();
+</script>
